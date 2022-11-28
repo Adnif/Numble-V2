@@ -7,10 +7,13 @@ function Number({numberPos, attemptVal, op}) {
 
     const selectLastBoard = () => {
       //if(currAttempt.attempt > 2) return;
-      const newBoard = {...board};
-      newBoard[currAttempt.attempt][currAttempt.numberPos] = board[attemptVal][3];
-      setBoard(newBoard);
-      setCurrAttempt({...currAttempt, numberPos: currAttempt.numberPos + 1});
+
+      if(currAttempt.numberPos == 0) {
+        const newBoard = {...board};
+        newBoard[currAttempt.attempt][currAttempt.numberPos] = board[attemptVal][3];
+        setBoard(newBoard);
+        setCurrAttempt({...currAttempt, numberPos: currAttempt.numberPos + 1});
+      }
     }
 
   return (

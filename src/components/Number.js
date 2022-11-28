@@ -8,7 +8,7 @@ function Number({numberPos, attemptVal, op}) {
     const selectLastBoard = () => {
       //if(currAttempt.attempt > 2) return;
 
-      if(currAttempt.numberPos == 0) {
+      if(currAttempt.numberPos != 1) {
         const newBoard = {...board};
         newBoard[currAttempt.attempt][currAttempt.numberPos] = board[attemptVal][3];
         setBoard(newBoard);

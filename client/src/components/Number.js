@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { appContext } from '../App'
+import { appContext } from './Game'
 
 function Number({ numberPos, attemptVal, op }) {
   const { board, setBoard, currAttempt, setCurrAttempt } =

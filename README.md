@@ -1,4 +1,4 @@
-# Numble, a Buiilding Number Game
+# Numble, a Building Number Game
 
 A wordle inspired game by Computer Science UNJ 2020 Students  
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

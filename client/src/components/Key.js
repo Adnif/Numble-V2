@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { appContext } from "./Game";
+import { appContext } from "../App";
 
 function Key({ keyVal, bigKey, ope }) {
   const { board, setBoard, currAttempt, setCurrAttempt } =
@@ -19,21 +19,50 @@ function Key({ keyVal, bigKey, ope }) {
     if (keyVal === "ENTER") {
       if (currAttempt.numberPos !== 3) return;
       const newBoard = { ...board };
+
       if (board[currAttempt.attempt][1] === "+") {
-        newBoard[currAttempt.attempt][3] =
+        const result =
           parseInt(board[currAttempt.attempt][0]) +
           parseInt(board[currAttempt.attempt][2]);
+        
+        if (result != 0) { // if (result >= 0) { <-- If you want to prevent negative value
+          newBoard[currAttempt.attempt][3] = result;
+          setBoard(newBoard);
+          setCurrAttempt({ attempt: currAttempt.attempt + 1, numberPos: 0 });
+        }
       } else if (board[currAttempt.attempt][1] === "-") {
-        newBoard[currAttempt.attempt][3] =
+        const result =
           parseInt(board[currAttempt.attempt][0]) -
           parseInt(board[currAttempt.attempt][2]);
+
+        if (result != 0) { // if (result >= 0) { <-- If you want to prevent negative value
+          newBoard[currAttempt.attempt][3] = result;
+          setBoard(newBoard);
+          setCurrAttempt({ attempt: currAttempt.attempt + 1, numberPos: 0 });
+        }
       } else if (board[currAttempt.attempt][1] === "*") {
-        newBoard[currAttempt.attempt][3] =
+        const result =
           parseInt(board[currAttempt.attempt][0]) *
           parseInt(board[currAttempt.attempt][2]);
+
+        if (result != 0) { // if (result >= 0) { <-- If you want to prevent negative value
+          newBoard[currAttempt.attempt][3] = result;
+          setBoard(newBoard);
+          setCurrAttempt({ attempt: currAttempt.attempt + 1, numberPos: 0 });
+        }
+      } else if (board[currAttempt.attempt][1] === "/") {
+        const result = Math.round(
+          parseInt(board[currAttempt.attempt][0]) /
+          parseInt(board[currAttempt.attempt][2])
+        );
+
+        if (result != 0) { // if (result >= 0) { <-- If you want to prevent negative value
+          newBoard[currAttempt.attempt][3] = result;
+          setBoard(newBoard);
+          setCurrAttempt({ attempt: currAttempt.attempt + 1, numberPos: 0 });
+        }
       }
-      setBoard(newBoard);
-      setCurrAttempt({ attempt: currAttempt.attempt + 1, numberPos: 0 });
+
     } else if (keyVal === "DELETE") {
       if (currAttempt.numberPos === 0) return;
       const newBoard = { ...board };

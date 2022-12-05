@@ -8,7 +8,7 @@ function Number({numberPos, attemptVal, op}) {
     const selectLastBoard = () => {
       //if(currAttempt.attempt > 2) return;
 
-      const numberPosIndex = [0, 2]
+      const numberPosIndex = [0, 2];
 
       if(numberPosIndex.includes(currAttempt.numberPos)) {
         const newBoard = {...board};

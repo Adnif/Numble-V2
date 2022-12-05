@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { appContext } from "../App";
+import { appContext } from "./Game";
 
 function Key({ keyVal, bigKey, ope }) {
   const { board, setBoard, currAttempt, setCurrAttempt } =

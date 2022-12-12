@@ -9,9 +9,20 @@ export const appContext = createContext();
 function Game() {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, numberPos: 0 });
+  const [difficulty, setDifficulty] = useState(0);
 
   function randomNumberInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  function setDifficult(){
+    return (
+      <div>
+        <h1>Select Difficulty</h1>
+        <button onClick={()=>setDifficulty(5)}>Easy</button>
+        <button onClick={()=>setDifficulty(4)}>Medium</button>
+        <button onClick={()=>setDifficulty(3)}>Hard</button>
+      </div>
+    );
   }
 
   const answer = randomNumberInRange(100, 1000);
@@ -37,14 +48,16 @@ function Game() {
 
       <h1>{num}</h1>
       <h1>
-        {score ? "You Win!" : currAttempt.attempt > 5 ? "You Lose!" : null}
+        {score ? "You Win!" : currAttempt.attempt > difficulty ? "You Lose!" : null}
       </h1>
+      {difficulty === 0 ? setDifficult() : null}
+
 
       <appContext.Provider
         value={{ board, setBoard, currAttempt, setCurrAttempt }}
       >
         <div className="game">
-          <Board />
+          <Board difficult={difficulty}/>
           <Keyboard />
         </div>
       </appContext.Provider>

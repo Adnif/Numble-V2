@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 
-import Login from "./Login";
-import Register from "./Register";
+// import Login from "./Login";
+// import Register from "./Register";
 import Instruction from "./Instruction";
+import { useNavigate } from "react-router-dom";
 
 export default function Menu() {
-  const [loginButton, setLoginButton] = useState(false);
-  const [registerButton, setRegisterButton] = useState(false);
+  // const [loginButton, setLoginButton] = useState(false);
+  // const [registerButton, setRegisterButton] = useState(false);
   const [instructionButton, setInstructionButton] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -18,14 +20,14 @@ export default function Menu() {
         <div className="container">
           <button
             className="btn btn-secondary btn-sm me-3"
-            onClick={() => setLoginButton(true)}
+            onClick={() => navigate("/login")}
             style={{ width: "100px" }}
           >
             Login
           </button>
           <button
             className="btn btn-light btn-sm"
-            onClick={() => setRegisterButton(true)}
+            onClick={() => navigate("/register")}
             style={{ width: "100px" }}
           >
             Register
@@ -59,8 +61,8 @@ export default function Menu() {
         trigger={instructionButton}
         setTrigger={setInstructionButton}
       />
-      <Login trigger={loginButton} setTrigger={setLoginButton} />
-      <Register trigger={registerButton} setTrigger={setRegisterButton} />
+      {/* <Login trigger={loginButton} setTrigger={setLoginButton} />
+      <Register trigger={registerButton} setTrigger={setRegisterButton} /> */}
     </>
   );
 }

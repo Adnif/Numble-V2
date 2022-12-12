@@ -6,6 +6,8 @@ import dotenv from "dotenv";
 import gameRoutes from "./routes/game.js";
 import userRoutes from "./routes/user.js";
 
+import { pool } from "./db.js";
+
 dotenv.config();
 
 const app = express();

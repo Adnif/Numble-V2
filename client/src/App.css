@@ -38,10 +38,10 @@
 }
 
 .App {
-  text-align: center;
+  /* text-align: center; */
   background-color: #121212;
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
   /* display: flex; */
   color: white;
 }

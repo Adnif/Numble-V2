@@ -1,8 +1,10 @@
 import express from "express";
+import * as userMiddleware from "../middleware/userMiddleware.js";
 
 import {
   getAllUsers,
   createUser,
+  login,
   getUser,
   updateUser,
   deleteUser,
@@ -13,7 +15,8 @@ const router = express.Router();
 router.get("/all", getAllUsers);
 router.get("/:id", getUser);
 
-router.post("/create", createUser);
+router.post("/create", userMiddleware.createUser, createUser);
+router.post("/login", userMiddleware.login, login);
 
 router.put("/update/:id", updateUser);
 

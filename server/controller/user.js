@@ -7,10 +7,25 @@ export const createUser = async (req, res) => {
       "INSERT INTO users (name, email, password) VALUES($1, $2, $3) RETURNING *",
       [name, email, password]
     );
-
-    res.json(newUser.rows[0]);
+    res.status(201).json({
+      success: true,
+      message: "User created succesfully",
+      data: newUser.rows[0],
+    });
   } catch (error) {
     console.error(error.message);
+  }
+};
+
+export const login = (req, res) => {
+  try {
+    res.status(201).json({
+      success: true,
+      message: "Login sucessful",
+      data: res.locals.user,
+    });
+  } catch (error) {
+    console.log(error);
   }
 };
 

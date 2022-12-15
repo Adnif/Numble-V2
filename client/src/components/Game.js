@@ -57,7 +57,9 @@ function Game() {
     return (
       <div className="popup">
         <div className="popup-inner">
-          <h1 className="heading-1">Select Difficulty</h1>
+          <h1 className="text-dark" style={{ fontSize: "50px" }}>
+            Select Difficulty
+          </h1>
           <div className="row mt-4">
             <div className="col-md-4">
               <button

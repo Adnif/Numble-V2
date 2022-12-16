@@ -2,12 +2,24 @@ import React, { useContext, useState } from "react";
 import { appContext } from "./Game";
 
 function Key({ keyVal, bigKey, ope }) {
-  const { board, setBoard, currAttempt, setCurrAttempt} =
+  const { board, setBoard, currAttempt, setCurrAttempt, lastboardstatus, setlastboardstatus} =
     useContext(appContext);
   /* const { board, setBoard, currAttempt, setCurrAttempt,score } =
-    useContext(appContext); codingan alif*/
+    useContext(appContext); fix bug finish game*/
   const pos = currAttempt.numberPos;
   let decision;
+  /* function lastClicked(index){
+    const check = lastboardstatus.map(
+      (c, i) => {
+        if(i == index){
+          return c = 1;
+        }else{
+          return c;
+        }
+      }
+    );
+    setlastboardstatus(check);
+  } fix bug lastboard*/
 
   if (ope == "number") {
     pos == 1 ? (decision = false) : (decision = true);
@@ -24,7 +36,7 @@ function Key({ keyVal, bigKey, ope }) {
     pos == 1 ? (decision = true) : (decision = false);
   }else {
     decision = true;
-  } codingan alif*/
+  } fix bug finish game*/
 
   const selectLetter = () => {
     if (keyVal === "ENTER") {
@@ -74,7 +86,13 @@ function Key({ keyVal, bigKey, ope }) {
         }
       }
     } else if (keyVal === "DELETE") {
+      /* for(let i = 0;i<5;i++){
+        if(board[currAttempt.attempt][currAttempt.numberPos-1] == lastboardstatus[i] && board[currAttempt.attempt][0] != board[currAttempt.attempt][2]){
+          lastClicked(i);
+        }
+      } fix bug lastboard */
       if (currAttempt.numberPos === 0) return;
+      
       const newBoard = { ...board };
       newBoard[currAttempt.attempt][currAttempt.numberPos - 1] = "";
       setBoard(newBoard);

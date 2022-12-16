@@ -10,6 +10,7 @@ function Game() {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, numberPos: 0 });
   const [difficulty, setDifficulty] = useState(0);
+  /* const [lastboardstatus, setlastboardstatus] = useState([1,1,1,1,1]) fix bug lastboard */
   function randomNumberInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -39,7 +40,6 @@ function Game() {
       <nav>
         <h1>Numble</h1>
       </nav>
-
       <h1>{num}</h1>
       <h1>
         {score ? "You Win!" : currAttempt.attempt > difficulty ? "You Lose!" : null}
@@ -48,8 +48,9 @@ function Game() {
 
 
       <appContext.Provider
-        value={{ board, setBoard, currAttempt, setCurrAttempt}}
-        // value={{ board, setBoard, currAttempt, setCurrAttempt, score }} codingan alif
+        value={{ board, setBoard, currAttempt, setCurrAttempt}} fix bug lastboard
+        // value={{ board, setBoard, currAttempt, setCurrAttempt, lastboardstatus, setlastboardstatus}} fix bug lastboard
+        // value={{ board, setBoard, currAttempt, setCurrAttempt, score }} fix bug finish game
       >
         <div className="game">
           <Board difficult={difficulty}/>

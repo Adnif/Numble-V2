@@ -2,12 +2,11 @@ import React, { useContext } from 'react'
 import { appContext } from './Game'
 
 function Number({ numberPos, attemptVal, op }) {
-  const { board, setBoard, currAttempt, setCurrAttempt } =
+  const { board, setBoard, currAttempt, setCurrAttempt, score } =
     useContext(appContext);
   const number = board[attemptVal][numberPos];
 
   const selectLastBoard = () => {
-    //if(currAttempt.attempt > 2) return;
 
     const numberPosIndex = [0, 2];
 
@@ -21,7 +20,7 @@ function Number({ numberPos, attemptVal, op }) {
   };
 
   return (
-    <div className="number" id={op && "operator"} onClick={selectLastBoard}>
+    <div className="number" id={op && "operator"} onClick={/*score ? null: codingan alif*/ selectLastBoard}>
       {number}
     </div>
   );

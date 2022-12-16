@@ -2,8 +2,10 @@ import React, { useContext, useState } from "react";
 import { appContext } from "./Game";
 
 function Key({ keyVal, bigKey, ope }) {
-  const { board, setBoard, currAttempt, setCurrAttempt } =
+  const { board, setBoard, currAttempt, setCurrAttempt} =
     useContext(appContext);
+  /* const { board, setBoard, currAttempt, setCurrAttempt,score } =
+    useContext(appContext); codingan alif*/
   const pos = currAttempt.numberPos;
   let decision;
 
@@ -14,6 +16,15 @@ function Key({ keyVal, bigKey, ope }) {
   } else {
     decision = true;
   }
+/*   if(score){
+    decision = false;
+  }else if (ope == "number") {
+    pos == 1 ? (decision = false) : (decision = true);
+  } else if (ope == "operator") {
+    pos == 1 ? (decision = true) : (decision = false);
+  }else {
+    decision = true;
+  } codingan alif*/
 
   const selectLetter = () => {
     if (keyVal === "ENTER") {
@@ -26,7 +37,6 @@ function Key({ keyVal, bigKey, ope }) {
           parseInt(board[currAttempt.attempt][2]);
 
         if (result != 0) {
-          // if (result >= 0) { <-- If you want to prevent negative value
           newBoard[currAttempt.attempt][3] = result;
           setBoard(newBoard);
           setCurrAttempt({ attempt: currAttempt.attempt + 1, numberPos: 0 });
@@ -37,7 +47,6 @@ function Key({ keyVal, bigKey, ope }) {
           parseInt(board[currAttempt.attempt][2]);
 
         if (result != 0) {
-          // if (result >= 0) { <-- If you want to prevent negative value
           newBoard[currAttempt.attempt][3] = result;
           setBoard(newBoard);
           setCurrAttempt({ attempt: currAttempt.attempt + 1, numberPos: 0 });
@@ -48,7 +57,6 @@ function Key({ keyVal, bigKey, ope }) {
           parseInt(board[currAttempt.attempt][2]);
 
         if (result != 0) {
-          // if (result >= 0) { <-- If you want to prevent negative value
           newBoard[currAttempt.attempt][3] = result;
           setBoard(newBoard);
           setCurrAttempt({ attempt: currAttempt.attempt + 1, numberPos: 0 });
@@ -60,7 +68,6 @@ function Key({ keyVal, bigKey, ope }) {
         );
 
         if (result != 0) {
-          // if (result >= 0) { <-- If you want to prevent negative value
           newBoard[currAttempt.attempt][3] = result;
           setBoard(newBoard);
           setCurrAttempt({ attempt: currAttempt.attempt + 1, numberPos: 0 });

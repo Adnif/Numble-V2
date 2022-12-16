@@ -10,7 +10,6 @@ function Game() {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, numberPos: 0 });
   const [difficulty, setDifficulty] = useState(0);
-
   function randomNumberInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -26,18 +25,13 @@ function Game() {
   }
 
   const answer = randomNumberInRange(100, 1000);
-  //const answer = 10;
   const [num, setNum] = useState(answer);
 
   let score;
-
+  
   if (currAttempt.numberPos === 0 && currAttempt.attempt > 0) {
-    // board[currAttempt.attempt - 1][3] === num ? (score = true) : null;
 
     score = board[currAttempt.attempt - 1][3] === num ? true : null;
-    //  if(board[5][3] !== num){
-    //    score = false;
-    //  }
   }
 
   return (
@@ -54,7 +48,8 @@ function Game() {
 
 
       <appContext.Provider
-        value={{ board, setBoard, currAttempt, setCurrAttempt }}
+        value={{ board, setBoard, currAttempt, setCurrAttempt}}
+        // value={{ board, setBoard, currAttempt, setCurrAttempt, score }} codingan alif
       >
         <div className="game">
           <Board difficult={difficulty}/>

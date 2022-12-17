@@ -15,6 +15,7 @@ function Game() {
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, numberPos: 0 });
   const [difficulty, setDifficulty] = useState(0);
   const [diffType, setDiffType] = useState("");
+  const [lastboardstatus, setlastboardstatus] = useState([1,1,1,1,1]);
 
   // Start : Variable dan Method untuk Timer
   const [time, setTime] = useState({ ms: 0, s: 0, m: 0 });
@@ -185,7 +186,7 @@ function Game() {
       {result(finished)}
 
       <appContext.Provider
-        value={{ board, setBoard, currAttempt, setCurrAttempt }}
+        value={{ board, setBoard, currAttempt, setCurrAttempt, lastboardstatus, setlastboardstatus }}
       >
         <div className="game">
           <Board difficulty={difficulty} />

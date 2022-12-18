@@ -2,13 +2,14 @@ import React from "react";
 import Board from "./Board";
 import Keyboard from "./Keyboard";
 import LeaderBoard from "./Leaderboard";
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { boardDefault } from "../calculate";
 import Stopwatch from "./Stopwatch";
 import "../css/Popup.css";
 import Popup from "./Popup";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { getAllUsers } from "../redux/slice/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export const appContext = createContext();
 
@@ -18,6 +19,9 @@ function Game() {
   const [difficulty, setDifficulty] = useState(0);
   const [diffType, setDiffType] = useState("");
   const [lastboardstatus, setlastboardstatus] = useState([1,1,1,1,1]);
+  const navigate = useNavigate();
+  const loginDetails = useSelector((state) => state.user.login.details);
+
 
   // Start : Variable dan Method untuk Timer
   const [time, setTime] = useState({ ms: 0, s: 0, m: 0 });
@@ -190,6 +194,7 @@ function Game() {
       {/* <button onClick={() => setShowModal(!showModal)}>OPEN</button> */}
       {/* {showModal && <Popup>{msg}</Popup>} */}
       {result(finished)}
+      <h2>Halo, {name}</h2>
 
       <appContext.Provider
         value={{ board, setBoard, currAttempt, setCurrAttempt, lastboardstatus, setlastboardstatus }}

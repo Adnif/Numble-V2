@@ -4,12 +4,22 @@ import React, { useState } from "react";
 // import Register from "./Register";
 import Instruction from "./Instruction";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export default function Menu() {
   // const [loginButton, setLoginButton] = useState(false);
   // const [registerButton, setRegisterButton] = useState(false);
   const [instructionButton, setInstructionButton] = useState(false);
   const navigate = useNavigate();
+  const loginDetails = useSelector((state) => state.user.login.details);
+  const isLogin = useSelector((state) => state.user.isLogin);
+  useEffect(() => {
+    console.log(isLogin);
+    if (!isLogin) {
+      navigate("/login");
+    }
+  });
 
   return (
     <>
@@ -38,13 +48,13 @@ export default function Menu() {
           </h1>
           <h5>Improve your math skills while having fun!</h5>
           <div className="mt-5">
-            <a
-              href="/game"
+            <button
+              onClick={() => navigate("/game")}
               className="btn btn-primary btn-lg me-4"
               style={{ "font-size": "28px" }}
             >
               Start Game
-            </a>
+            </button>
             <button
               href="#"
               className="btn btn-warning btn-lg ms-4"

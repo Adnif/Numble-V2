@@ -8,6 +8,7 @@ const userSlice = createSlice({
     isLogin: false,
     login: {
       success: null,
+      details: null,
       errorsType: null,
       errors: {
         email: null,
@@ -56,7 +57,10 @@ const userSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.login.success = action.payload.success;
 
-        if (state.login.success) state.isLogin = true;
+        if (state.login.success) {
+          state.isLogin = true;
+          state.login.details = action.payload.data;
+        }
 
         state.login.errorsType = action.payload.type ? action.payload.type : null;
         // reset all errors properties to null

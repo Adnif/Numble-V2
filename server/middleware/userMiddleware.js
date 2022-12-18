@@ -9,18 +9,11 @@ export const createUser = [
     .isEmail()
     .withMessage("Invalid email")
     .custom(async (value) => {
-      const email = await pool.query("SELECT * FROM users WHERE email=$1", [
-        value,
-      ]);
+      const email = await pool.query("SELECT * FROM users WHERE email=$1", [value]);
+      console.log(email.rows);
       if (email.rows.length) return Promise.reject("E-mail already in use");
     }),
-  check("name")
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage("name must not be empty")
-    .isLength({ max: 25 })
-    .withMessage("name must be less than 25 character"),
+  check("name").trim().escape().notEmpty().withMessage("name must not be empty").isLength({ max: 25 }).withMessage("name must be less than 25 character"),
   check("password")
     .trim()
     .notEmpty()
@@ -38,8 +31,7 @@ export const createUser = [
     .notEmpty()
     .withMessage("Password confirmation must not be empty")
     .custom((value, { req }) => {
-      if (value !== req.body.password)
-        return Promise.reject("Password confirmation does not match password");
+      if (value !== req.body.password) return Promise.reject("Password confirmation does not match password");
       else return true;
     }),
   (req, res, next) => {
@@ -56,12 +48,7 @@ export const createUser = [
 ];
 
 export const login = [
-  check("email")
-    .trim()
-    .notEmpty()
-    .withMessage("Email must not be empty")
-    .isEmail()
-    .withMessage("Invalid Email"),
+  check("email").trim().notEmpty().withMessage("Email must not be empty").isEmail().withMessage("Invalid Email"),
   check("password").trim().notEmpty().withMessage("Password must not be empty"),
   async (req, res, next) => {
     const { email, password } = req.body;
@@ -76,9 +63,7 @@ export const login = [
       });
 
     // check if there is existing user
-    const user = await pool.query("SELECT * FROM users WHERE email=$1", [
-      email,
-    ]);
+    const user = await pool.query("SELECT * FROM users WHERE email=$1", [email]);
     if (!user.rows.length)
       return res.status(200).json({
         success: false,

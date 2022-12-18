@@ -1,12 +1,14 @@
 import React from "react";
 import Board from "./Board";
 import Keyboard from "./Keyboard";
+import LeaderBoard from "./Leaderboard";
 import { createContext, useState } from "react";
 import { boardDefault } from "../calculate";
 import Stopwatch from "./Stopwatch";
-
 import "../css/Popup.css";
 import Popup from "./Popup";
+import { useDispatch } from "react-redux";
+import { getAllUsers } from "../redux/slice/userSlice";
 
 export const appContext = createContext();
 
@@ -48,6 +50,10 @@ function Game() {
     clearInterval(interv);
   };
   // End : Variable dan Method untuk Timer
+
+  const dispatch = useDispatch();
+
+  dispatch(getAllUsers());
 
   function randomNumberInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -193,6 +199,8 @@ function Game() {
           <Keyboard />
         </div>
       </appContext.Provider>
+
+      <LeaderBoard />
     </div>
   );
 }

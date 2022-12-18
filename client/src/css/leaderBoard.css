@@ -1,0 +1,52 @@
+.leaderBoard {
+  font-size: 22px;
+  position: relative;
+  width: 400px;
+  height: 720px;
+  margin-left: 1400px;
+  margin-top: -820px;
+  border-radius: 20px;
+  border: 2px solid white;
+}
+
+.header {
+  margin-top: 15px;
+  font-size: 33px;
+  font-weight: 500;
+}
+
+.refresh {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  color: rgb(124, 124, 124);
+  text-align: right;
+}
+
+.line {
+  width: 100%;
+  height: 5px;
+  margin-bottom: 5px;
+  background-color: rgb(190, 185, 185);
+}
+
+.rank {
+  float: left;
+  width: 20%;
+  padding: 5px;
+  height: 100%;
+}
+
+.name {
+  float: left;
+  width: 60%;
+  padding: 5px;
+  height: 100%;
+  border-color: red;
+}
+
+.score {
+  float: left;
+  width: 20%;
+  padding: 5px;
+  height: 100%;
+}

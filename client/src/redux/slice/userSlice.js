@@ -4,7 +4,7 @@ import * as api from "../../api/api";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    details: null,
+    leaderBoard: null,
     isLogin: false,
     login: {
       success: null,
@@ -26,21 +26,19 @@ const userSlice = createSlice({
   },
   reducers: {
     setCondition: (state) => {
-      console.log("behasil");
+      console.log("berhasil");
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(getAllUsers.fulfilled, (state, action) => {
-        state.data = action.payload;
+        state.leaderBoard = action.payload;
       })
       .addCase(register.fulfilled, (state, action) => {
         state.register.success = action.payload.success;
 
         // reset all errors properties to null
-        Object.keys(state.register.errors).forEach(
-          (i) => (state.register.errors[i] = null)
-        );
+        Object.keys(state.register.errors).forEach((i) => (state.register.errors[i] = null));
 
         action.payload.errors &&
           action.payload.errors.forEach((err) => {
@@ -60,13 +58,9 @@ const userSlice = createSlice({
 
         if (state.login.success) state.isLogin = true;
 
-        state.login.errorsType = action.payload.type
-          ? action.payload.type
-          : null;
+        state.login.errorsType = action.payload.type ? action.payload.type : null;
         // reset all errors properties to null
-        Object.keys(state.login.errors).forEach(
-          (i) => (state.login.errors[i] = null)
-        );
+        Object.keys(state.login.errors).forEach((i) => (state.login.errors[i] = null));
 
         action.payload.errors &&
           action.payload.errors.forEach((err) => {
@@ -80,13 +74,10 @@ const userSlice = createSlice({
   },
 });
 
-export const getAllUsers = createAsyncThunk(
-  "user/getAllUsersStatus",
-  async () => {
-    const response = await api.getAllUser();
-    return response.data;
-  }
-);
+export const getAllUsers = createAsyncThunk("user/getAllUsersStatus", async () => {
+  const response = await api.getAllUser();
+  return response.data;
+});
 
 export const register = createAsyncThunk("user/register", async (data) => {
   const response = await api.register(data);

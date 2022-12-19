@@ -54,13 +54,13 @@ export default function Menu() {
           >
             {isLogin ? "Logout" : "Login"}
           </button>
-          <button
+          {/* <button
             className="btn btn-light btn-sm"
             onClick={() => navigate("/register")}
             style={{ width: "100px" }}
           >
             Register
-          </button>
+          </button> */}
 
           <h1 className="text-light fw-bold" style={{ "font-size": "120px" }}>
             NUMBLE

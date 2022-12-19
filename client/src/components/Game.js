@@ -39,7 +39,7 @@ function Game() {
         }
       );
 
-      window.location = "/";
+      window.location = "/game";
     } catch (err) {
       console.error(err.message);
     }

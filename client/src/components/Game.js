@@ -26,6 +26,25 @@ function Game() {
   const [time, setTime] = useState({ ms: 0, s: 0, m: 0 });
   const [interv, setInterv] = useState();
 
+  const updateScore = async score => {
+    //e.preventDefault();
+    try {
+      const body = { score };
+      const response = await fetch(
+        `http://localhost:5000/score/${loginDetails.name}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        }
+      );
+
+      window.location = "/";
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   var updatedMs = time.ms,
     updatedS = time.s,
     updatedM = time.m;
@@ -153,9 +172,12 @@ function Game() {
           <h2 className="mt-3" style={{ fontSize: "35px" }}>
             Finished in {time.m}m {time.s}s
           </h2>
-          <a className="btn btn-primary mt-5" href="/game">
+          <button className="btn btn-primary mt-5" onClick={() => updateScore(totalScore)}>
             Play Again
-          </a>
+          </button>
+          {/* <a className="btn btn-primary mt-5" href="/game">
+            Play Again
+          </a> */}
         </Popup>
       );
     }

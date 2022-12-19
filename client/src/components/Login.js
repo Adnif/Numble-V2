@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../redux/slice/userSlice";
+import { login, resetLogin } from "../redux/slice/userSlice";
 import email from "../image/email.png";
 import password from "../image/password.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ import "../css/loginRegister.css";
 
 export default function Register() {
   const data = useSelector((state) => state.user.login);
+  const isLogin = useSelector((state) => state.user.isLogin);
   const errors = data.errors;
 
   const initialState = {
@@ -19,6 +20,10 @@ export default function Register() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (isLogin) {
+      navigate("/");
+    }
+
     if (data.success) {
       navigate("/");
     }

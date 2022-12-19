@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../redux/slice/userSlice";
+import { register, resetRegister } from "../redux/slice/userSlice";
 import user from "../image/user.png";
 import email from "../image/email.png";
 import password from "../image/password.png";
 import { Link } from "react-router-dom";
 import "../css/loginRegister.css";
+import { useEffect } from "react";
 
 export default function Register() {
   const data = useSelector((state) => state.user.register);

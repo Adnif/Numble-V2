@@ -4,22 +4,41 @@ import React, { useState } from "react";
 // import Register from "./Register";
 import Instruction from "./Instruction";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import {
+  login,
+  logout,
+  resetLogin,
+  resetRegister,
+} from "../redux/slice/userSlice";
 
 export default function Menu() {
   // const [loginButton, setLoginButton] = useState(false);
   // const [registerButton, setRegisterButton] = useState(false);
   const [instructionButton, setInstructionButton] = useState(false);
   const navigate = useNavigate();
-  const loginDetails = useSelector((state) => state.user.login.details);
   const isLogin = useSelector((state) => state.user.isLogin);
+  const dispatch = useDispatch();
+
+  console.log(isLogin);
+
   useEffect(() => {
-    console.log(isLogin);
+    dispatch(resetLogin());
+    dispatch(resetRegister());
     if (!isLogin) {
       navigate("/login");
     }
   });
+
+  function buttonController() {
+    // logout
+    if (isLogin) {
+      dispatch(logout());
+    } else {
+      navigate("/login");
+    }
+  }
 
   return (
     <>
@@ -30,10 +49,10 @@ export default function Menu() {
         <div className="container">
           <button
             className="btn btn-secondary btn-sm me-3"
-            onClick={() => navigate("/login")}
+            onClick={() => buttonController()}
             style={{ width: "100px" }}
           >
-            Login
+            {isLogin ? "Logout" : "Login"}
           </button>
           <button
             className="btn btn-light btn-sm"

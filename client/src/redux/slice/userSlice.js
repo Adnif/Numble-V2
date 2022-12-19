@@ -6,9 +6,9 @@ const userSlice = createSlice({
   initialState: {
     leaderBoard: null,
     isLogin: false,
+    details: null,
     login: {
       success: null,
-      details: null,
       errorsType: null,
       errors: {
         email: null,
@@ -26,9 +26,26 @@ const userSlice = createSlice({
     },
   },
   reducers: {
-    setCondition: (state) => {
-      console.log("berhasil");
-    },
+    logout: (state) => void (state.isLogin = false),
+    resetLogin: (state) =>
+      void (state.login = {
+        success: null,
+        errorsType: null,
+        errors: {
+          email: null,
+          password: null,
+        },
+      }),
+    resetRegister: (state) =>
+      void (state.register = {
+        success: null,
+        errors: {
+          name: null,
+          email: null,
+          password: null,
+          confirmPassword: null,
+        },
+      }),
   },
   extraReducers: (builder) => {
     builder
@@ -39,7 +56,9 @@ const userSlice = createSlice({
         state.register.success = action.payload.success;
 
         // reset all errors properties to null
-        Object.keys(state.register.errors).forEach((i) => (state.register.errors[i] = null));
+        Object.keys(state.register.errors).forEach(
+          (i) => (state.register.errors[i] = null)
+        );
 
         action.payload.errors &&
           action.payload.errors.forEach((err) => {
@@ -59,12 +78,16 @@ const userSlice = createSlice({
 
         if (state.login.success) {
           state.isLogin = true;
-          state.login.details = action.payload.data;
+          state.details = action.payload.data;
         }
 
-        state.login.errorsType = action.payload.type ? action.payload.type : null;
+        state.login.errorsType = action.payload.type
+          ? action.payload.type
+          : null;
         // reset all errors properties to null
-        Object.keys(state.login.errors).forEach((i) => (state.login.errors[i] = null));
+        Object.keys(state.login.errors).forEach(
+          (i) => (state.login.errors[i] = null)
+        );
 
         action.payload.errors &&
           action.payload.errors.forEach((err) => {
@@ -78,10 +101,15 @@ const userSlice = createSlice({
   },
 });
 
-export const getAllUsers = createAsyncThunk("user/getAllUsersStatus", async () => {
-  const response = await api.getAllUser();
-  return response.data;
-});
+export const { resetRegister, resetLogin, logout } = userSlice.actions;
+
+export const getAllUsers = createAsyncThunk(
+  "user/getAllUsersStatus",
+  async () => {
+    const response = await api.getAllUser();
+    return response.data;
+  }
+);
 
 export const register = createAsyncThunk("user/register", async (data) => {
   const response = await api.register(data);

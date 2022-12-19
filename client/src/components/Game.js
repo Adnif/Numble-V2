@@ -7,7 +7,7 @@ import { boardDefault } from "../calculate";
 import Stopwatch from "./Stopwatch";
 import "../css/Popup.css";
 import Popup from "./Popup";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../redux/slice/userSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -18,10 +18,9 @@ function Game() {
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, numberPos: 0 });
   const [difficulty, setDifficulty] = useState(0);
   const [diffType, setDiffType] = useState("");
-  const [lastboardstatus, setlastboardstatus] = useState([1,1,1,1,1]);
+  const [lastboardstatus, setlastboardstatus] = useState([1, 1, 1, 1, 1]);
   const navigate = useNavigate();
-  const loginDetails = useSelector((state) => state.user.login.details);
-
+  const loginDetails = useSelector((state) => state.user.details);
 
   // Start : Variable dan Method untuk Timer
   const [time, setTime] = useState({ ms: 0, s: 0, m: 0 });
@@ -194,10 +193,17 @@ function Game() {
       {/* <button onClick={() => setShowModal(!showModal)}>OPEN</button> */}
       {/* {showModal && <Popup>{msg}</Popup>} */}
       {result(finished)}
-      <h2>Halo, {name}</h2>
+      <h2>Halo, {loginDetails.name}</h2>
 
       <appContext.Provider
-        value={{ board, setBoard, currAttempt, setCurrAttempt, lastboardstatus, setlastboardstatus }}
+        value={{
+          board,
+          setBoard,
+          currAttempt,
+          setCurrAttempt,
+          lastboardstatus,
+          setlastboardstatus,
+        }}
       >
         <div className="game">
           <Board difficulty={difficulty} />

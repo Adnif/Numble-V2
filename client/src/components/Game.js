@@ -26,6 +26,15 @@ function Game() {
   const [time, setTime] = useState({ ms: 0, s: 0, m: 0 });
   const [interv, setInterv] = useState();
 
+  //Music:
+  function music(){
+    return(
+      <div>
+        <audio  src="http://commondatastorage.googleapis.com/codeskulptor-demos/pyman_assets/ateapill.ogg" autoPlay loop/>
+      </div>
+    )
+  }
+
   const updateScore = async score => {
     //e.preventDefault();
     try {
@@ -207,6 +216,8 @@ function Game() {
 
   return (
     <div className="App my-3">
+      {music()}
+
       <h1 style={{ fontSize: "50px" }}>{num}</h1>
       <Stopwatch time={time} />
 

@@ -13,16 +13,7 @@ function Instruction(props) {
         </button>
         <h1 className="mb-4">Instruction</h1>
         <p className="text-start">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida
-          nisl ipsum, at ornare sem auctor id. Proin tristique nisl urna, ac
-          maximus justo efficitur ac. Maecenas in nisi id enim rutrum
-          pellentesque iaculis quis augue. Suspendisse maximus maximus vehicula.
-          Donec tincidunt lacinia suscipit. In ultricies sem et magna volutpat,
-          eu porta lectus dictum. Etiam mattis et lacus eu molestie. Fusce sit
-          amet tellus lacinia enim dapibus ullamcorper. Nam pellentesque velit
-          et lacus hendrerit commodo. Nam eu malesuada neque. Nam ullamcorper
-          magna sit amet hendrerit tincidunt. Vestibulum sollicitudin interdum
-          aliquam.
+        You have to make the number at the top and every most-right square is usable once, even the answers to your own equations.
         </p>
         <p className="text-start">
           Donec faucibus imperdiet augue at cursus. Sed semper enim vel orci
